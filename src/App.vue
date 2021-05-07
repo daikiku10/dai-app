@@ -28,6 +28,7 @@
           <v-tab :to="{name: 'QiitaSearch'}">Qiita検索</v-tab>
           <v-tab :to="{name: 'QiitaFavorite'}">Qiitaお気に入り</v-tab>
           <v-tab :to="{name: 'AddressForm'}">住所入力</v-tab>
+          <v-tab :to="{name: 'Rakuten'}">楽天</v-tab>
         </v-tabs>
       </template>
     </v-app-bar>

@@ -11,7 +11,8 @@ export default new Vuex.Store({
   state: {
     login_user: null,
     qiitaDatas:[],
-    qiitaFavoriteDatas:[]
+    qiitaFavoriteDatas:[],
+    rakutenDatas:[],
   },
   getters:{
     userName: state => state.login_user ? state.login_user.displayName : '',
@@ -35,6 +36,10 @@ export default new Vuex.Store({
     deleteQiitaFavoriteData(state, item){
       const index = state.qiitaFavoriteDatas.findIndex(qiitaFavoriteData => qiitaFavoriteData.id === item.id)
       state.qiitaFavoriteDatas.splice(index, 1)
+    },
+    rakutenApi(state, rakutenDatas){
+      state.rakutenDatas = rakutenDatas
+      console.log(state.rakutenDatas)
     }
   },
   actions: {
@@ -88,6 +93,28 @@ export default new Vuex.Store({
         snapshot.forEach(doc => {
           commit('addQiitaFavoriteData', {id:doc.id, item: doc.data()})
         })
+      })
+    },
+    rakutenApi({commit}){
+      axios.get("https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404", {
+        params:{
+          applicationId: '1029557867360796334',
+          keyword: 'サッカー'
+        }
+      }).then(res => {
+        let rakutenDatas = []
+        res.data.Items.forEach(item => {
+          let rakutenData = {
+            title: item.Item.title,
+            url: item.Item.mediumImageUrl,
+            price: item.Item.itemPrice,
+            author: item.Item.author,
+            sbTitle: item.Item.itemCaption,
+            kbn: '0'
+          }
+          rakutenDatas.push(rakutenData)
+        })
+        commit('rakutenApi', rakutenDatas)
       })
     }
 

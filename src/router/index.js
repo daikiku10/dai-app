@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import QiitaSearch from '../views/QiitaSearch.vue'
 import QiitaFavorite from '../views/QiitaFavorite.vue'
 import AddressForm from '../views/AddressForm.vue'
+import Rakuten from '../views/Rakuten.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/address',
     name: 'AddressForm',
     component: AddressForm
+  },
+  {
+    path: '/rakuten',
+    name: 'Rakuten',
+    component: Rakuten
   }
 ]
 
