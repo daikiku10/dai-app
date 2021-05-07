@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import QiitaSearch from '../views/QiitaSearch.vue'
 import QiitaFavorite from '../views/QiitaFavorite.vue'
+import AddressForm from '../views/AddressForm.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/qiita_favorite',
     name: 'QiitaFavorite',
     component: QiitaFavorite
+  },
+  {
+    path: '/address',
+    name: 'AddressForm',
+    component: AddressForm
   }
 ]
 
